@@ -1,0 +1,46 @@
+  {% if settings.collection_sidebar_product_prices %}
+    <h4 class="toggle"><span>+</span>Filter by Size</h4>
+    <ul class="blog_list toggle_list">
+      <li>
+        <a{% unless current_tags %} class="active"{% endunless %} href="{% if collection.handle == "all" %}/collections/all{% else %}{{ collection.url }}{% endif %}">All {{ collection.title }}</a>
+      </li>
+      {% assign prices = settings.collection_sidebar_product_prices_list | split: ',' %}
+      {% for price in prices %}
+        <li>
+          <a{% if current_tags contains size %} class="active"{% endif %} href="/collections/{% if collection.handle != blank %}{{ collection.handle }}{% else %}all{% endif %}/{{ price | handleize }}">{{ price }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  {% comment %}
+
+  Read me
+  
+  This adds links to the sidebar filtering through sizes
+
+  {% endcomment %}
+
+
+  <th><label for="collection_sidebar_product_sizes">Sidebar Product Sizes</label></th>
+    <td>
+      <input type="checkbox" id="collection_sidebar_product_sizes" name="collection_sidebar_product_sizes" />
+    </td>
+  </tr>
+  <tr>
+    <th><label for="collection_sidebar_product_prices_list">List of Product Sizes</label></th>
+    <td>
+      <input type="text" id="collection_sidebar_product_sizes_list" name="collection_sidebar_product_sizes_list" />
+    </td>
+    <td>
+      <p>Please enter a comma-separated list of product sizes (for filtering)</p>
+    </td>
+  </tr>
+
+  {% comment %}
+  
+  Read me
+  
+  This is the settings for the sidebar filter
+
+  {% endcomment %}    
