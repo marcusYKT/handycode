@@ -1,0 +1,26 @@
+  {% if settings.collection_sidebar_product_sizes %}
+    <h4 class="toggle"><span>+</span>Sizes</h4>
+    <ul class="blog_list toggle_list">
+      <li>
+        <a{% unless current_tags %} class="active"{% endunless %} href="{% if collection.handle == "all" %}/collections/all{% else %}{{ collection.url }}{% endif %}">All {{ collection.title }}</a>
+      </li>
+      {% assign setting_sizes = settings.collection_sidebar_product_sizes_list | split: ',' %}
+      {% assign sizes = '' %}
+      {% assign temp_size = '' %}
+      {% assign temp_sizes = '' %}
+      {% assign tags = collection.all_tags | join:'' | downcase %} {% comment %}erase join and downcase{% endcomment %}
+      {% for setting_size in setting_sizes %}
+        {% assign temp_size = setting_size | downcase | strip %} {% comment %}remove downcase{% endcomment %}
+        {% if tags contains temp_size %}
+          {% capture temp_sizes %}{{ sizes | append: setting_size | append: ',' }}{% endcapture %}
+          {% assign sizes = temp_sizes %}
+        {% endif %}
+      {% endfor %}
+      {% assign sizes = sizes | split: ',' %}
+      {% for size in sizes %}
+        <li>
+          <a{% if current_tags contains size %} class="active"{% endif %} href="/collections/{% if collection.handle != blank %}{{ collection.handle }}{% else %}all{% endif %}/{{ size | handleize }}">{{ size }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
