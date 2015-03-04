@@ -15,8 +15,6 @@
             if ($(window).width() < 600) {
                 $('nav ul').slideUp();
             }
-
-            return false;
         }
     }
 
