@@ -28,8 +28,6 @@ jQuery(document).ready(function($) {
 		$images.each(function(){
 			var imgSRC = this.src;
 
-			debugger;
-
 			for ( var i = 0; i < extensions.length; i++){
 
 				var newSRC = imgSRC.replace(extensions[i],'.');
