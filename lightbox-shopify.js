@@ -1,10 +1,6 @@
 jQuery(document).ready(function($) {
 	'use strict';
 
-	console.log('runnningu');
-
-	debugger;
-
 	//js for the lightbox plugin
 	var galleryCheck = $(".gallery-uf").length;
 
@@ -18,7 +14,7 @@ jQuery(document).ready(function($) {
 						"_grande.",
 						"_10214x1024.",
 						"_2048x2048."
-				];
+					];
 
 	if (galleryCheck > 0) {
 
@@ -45,7 +41,6 @@ jQuery(document).ready(function($) {
 		});
 	}
 });
-
 // the other part of the lightbox plugin
 
 <div class="gallery-uf">
