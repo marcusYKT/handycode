@@ -16,3 +16,5 @@ $portrait: "only screen and (orientation: portrait)";
 $tablet: "only screen and (min-device-width: 768px) and (max-device-width: 1024px)";
 
 $retina: "(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dppx)";
+
+$mobileOnly: "only screen and (max-width: 639px)";

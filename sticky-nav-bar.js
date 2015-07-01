@@ -1,4 +1,4 @@
-	var navHeight = 200;
+	var navHeight = 10;
 	var navBar = $('.header_bot');
 
 	$(window).bind('scroll', function () {
