@@ -1,0 +1,9 @@
+{% comment %} 
+  get and display the first image from a Shopify blog article and spits it out
+{% endcomment %}
+
+{% if article.content contains '<img' %}
+  {% assign src = article.content | split: 'src="' %}
+  {% assign src = src[1] | split: '"' | first | replace: '//cdn', 'http://cdn' | replace: 'http:http://', 'http://' %}
+    <img src="{{ src }}" />
+{% endif %}
