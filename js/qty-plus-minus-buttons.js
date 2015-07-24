@@ -1,3 +1,5 @@
+// needs operator.js to function!
+
 /**
  * declarative incrementers and decrementers for product add-to-cart quantities
  */
