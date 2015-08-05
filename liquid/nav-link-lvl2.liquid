@@ -1,0 +1,17 @@
+	{% comment %} 
+	  to stop the 'sale' nav item looping 2 levels deep
+	{% endcomment %}
+	{% if link.handle == '' %}
+	  <li {% if link.active %}class="Selected"{% endif %}><a href="{{ link.url }}" title="{{ link.title }}">{{ link.title }}</a>
+	    <ul>
+	      {% for link in linklists[link.handle].links %}
+	        {% if linklists[link.handle] == empty %}
+	          <li {% if link.active %}class="Selected"{% endif %}><a href="{{ link.url }}" title="{{ link.title }}">{{ link.title }}</a></li>
+	        
+	        {% else %}
+	          <li {% if link.active %}class="Selected"{% endif %}><a href="{{ link.url }}" title="{{ link.title }}">{{ link.title }}</a></li>
+	        {% endif %}
+	      {% endfor %}
+	    </ul>
+	  </li>
+	{% endif %}
