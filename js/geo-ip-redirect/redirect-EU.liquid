@@ -1,0 +1,47 @@
+{% comment %}
+
+  GEO IP Redirect
+
+  Place in header to redirect before loading all of the site's assets
+
+  NOTE: we are not trying to force a synchronous call since this is no longer supported in most major browsers
+
+  To emulate a synchronous call, we put a 'cover' div over the site while the redirect script is running.
+  The cover div is removed once the redirect script is complete,
+  and the site is revealed
+
+  Dependencies: jQuery
+
+{% endcomment %}
+<script id="comet-geo-ip-redirect">
+;(function($, undefined) {
+  'use strict';
+
+  var europeCountries = ["AD","AL","AT","AX","BA","BE","BG","BY","CH","CZ","DE","DK","EE","ES","EU","FI","FO","FR","FX","GB","GG","GI","GR","HR","HU","IE","IM","IS","IT","JE","LI","LT","LU","LV","MC","MD","ME","MK","MT","NL","NO","PL","PT","RO","RS","RU","SE","SI","SJ","SK","SM","TR","UA","VA"];
+
+  function onSuccess(loc) {
+    var $cover      = $('#comet-geo-ip-redirect-cover');
+    var inEurope    = $.inArray(loc.country_code, europeCountries) > -1;
+
+    if (!inEurope && $.cookie("force_piper_store") !== 'eu' && location.hash !== '#eu') {
+      window.location = window.location.href.replace('eu-store.getpiper.com', 'store.getpiper.com');
+    } else {
+      $.cookie('force_piper_store', 'eu');
+      if ($cover.length) {
+        $cover.remove();
+      } else {
+        $(function() {
+          $('#comet-geo-ip-redirect-cover').remove();
+        });
+      }
+    }
+  }
+
+  $.ajax({ 
+    url: '//geoip.demacmedia.ca/json/', 
+    type: 'GET', 
+    dataType: 'jsonp',
+    success: onSuccess
+  });
+})(jQuery);
+</script>
