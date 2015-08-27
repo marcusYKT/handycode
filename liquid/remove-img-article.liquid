@@ -1,0 +1,11 @@
+	{% assign article_content = article.content %}
+	
+	{% if article_content contains '<img' %}
+		
+		{% assign article_content = article_content | split: '<img' %}
+		{% assign article_content = article_content[1] %}
+		{% assign article_content = article_content | split: '/>' %}
+		{% assign article_content = article_content[1] %}
+	{% endif %}
+	
+	{{ article_content }}
