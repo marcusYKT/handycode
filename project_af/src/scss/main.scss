@@ -1,0 +1,36 @@
+//
+// import all the things
+//
+
+//-------------------------------
+// vendor
+//-------------------------------
+@import 'vendor/normalize';
+@import 'vendor/foundation';
+
+//-------------------------------
+// core
+//-------------------------------
+@import 'core/colours';
+@import 'core/fonts';
+@import 'core/media';
+@import 'core/global';
+
+//-------------------------------
+// partials
+//-------------------------------
+@import 'partials/header';
+@import 'partials/footer';
+@import 'partials/typography';
+
+//-------------------------------
+// snippets
+//-------------------------------
+@import 'snippets/utility';
+
+//-------------------------------
+// templates
+//-------------------------------
+@import 'templates/about';
+@import 'templates/contact';
+@import 'templates/index';
