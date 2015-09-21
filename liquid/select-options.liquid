@@ -1,0 +1,24 @@
+<div>
+  <h4>Team:</h4>
+  <select id="chair-selector" name="">
+    {% for product in collections.team-offers.products %}
+      <option value="{{ product.url }}">
+        {{ product.title | remove: 'BASE Muskoka Chair' }}
+      </option>
+    {% endfor %}
+  </select>
+  <script type="text/javascript">
+    ;(function($)
+    {
+      'use strict';
+      $('#chair-selector').on('change', function(e){
+        var val   = $(this).val()
+          , path  = location.pathname;
+        e.preventDefault();
+        if (path !== val) {
+          location.href = val;
+        }
+      });
+    })(jQuery);
+  </script>
+</div>
