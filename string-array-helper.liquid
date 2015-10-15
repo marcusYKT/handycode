@@ -1,0 +1,11 @@
+
+
+{% comment %}
+	turns string turns into array,
+	grabs first item in the array,
+	then handleizes it
+{% endcomment %}
+
+
+{% assign thingy = product_title | split: ' ' | first | handle %}
+
