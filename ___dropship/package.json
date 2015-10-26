@@ -4,7 +4,7 @@
   "pathToJs": "src/js/",
   "pathToSrc": "src/",
   "pathToDest": "theme/assets/",
-  "stylesheetName": "titika",
+  "stylesheetName": "css_shop",
   "javascriptName": "js_shop",
   "devDependencies": {
     "gulp": "^3.8.11",
