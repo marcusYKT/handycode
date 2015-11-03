@@ -1,0 +1,33 @@
+<ul class="ul--inline social-share social-icons social-share--{{ social-share }}">
+  {% if settings.twittercard_handle != blank %}
+    <li>
+      <a class="social-icon social-icon--twitter"
+        target="_blank"
+        title="{{ shop.name }} on Twitter"
+        href="//twitter.com/share?text={{ settings.twittercard_handle }}&amp;?url={{ shop.url }}{{ product.url }}">
+        <i class="fa fa-twitter"></i>
+      </a>
+    </li>
+  {% endif %}
+  <li>
+    <a class="social-icon social-icon--facebook"
+      target="_blank"
+      href="//facebook.com/sharer.php?u={{ shop.url }}{{ product.url }}&amp;t={{ product.title }}">
+      <i class="fa fa-facebook"></i>
+    </a>
+  </li>
+  <li>
+    <a class="social-icon social-icon--pinterest"
+      target="_blank"
+      href="http://pinterest.com/pin/create/button/?url={{ shop.url }}{{ product.url }}&media={{ product.featured_image.src | product_img_url: 'grande' }}&description={{ product.title }}">
+      <i class="fa fa-pinterest"></i>
+    </a>
+  </li>
+  <li>
+    <a class="social-icon social-icon--envelope"
+      target="_blank"
+      href="mailto:?subject={{ product.title }}&amp;body={{ shop.url }}{{ product.url }}" title="Share by Email">
+      <i class="fa fa-envelope"></i>
+    </a>
+  </li>
+</ul>
