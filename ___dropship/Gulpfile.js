@@ -17,7 +17,8 @@ var pkg				= require('./package.json'),
 	uglify 			= require('gulp-uglify'),
 	exec 			= require('child_process').exec,
 	argv 			= require('yargs').argv,
-	isProduction 	= pkg.environment === 'production';
+	isProduction 	= pkg.environment === 'production',
+	jsarray			= [];
 
 
 //-------------------------------
@@ -64,8 +65,8 @@ gulp.task('styles', function() {
 //-------------------------------
 gulp.task('scripts', function() {
 	// prepend our pathToJs to each js file in the manifest (to make our lives easy -- less writing)
-	jsmanifest.forEach(function(val, i, a) { a[i] = pkg.pathToJs + val; });
-	return gulp.src((jsmanifest))
+	jsmanifest.forEach(function(val, i, a) { jsarray[i] = pkg.pathToJs + val; });
+	return gulp.src(jsarray)
 		// js hinting for code standards
 		.pipe(jshint())
 		.pipe(jshint.reporter('default'))
@@ -85,7 +86,14 @@ gulp.task('scripts', function() {
 
 		// uglify or beatify our js,
 		// depending on environment (production or develop)
-		.pipe(uglify({ mangle:isProduction, compress:isProduction }))
+		.pipe(uglify({
+			mangle: isProduction,
+			compress: isProduction,
+			output: {
+				beautify: !isProduction
+			},
+			preserveComments: !isProduction
+		}))
 
 		// output our js to our specified destination
 		.pipe(gulp.dest(pkg.pathToDest));
@@ -98,30 +106,9 @@ gulp.task('scripts', function() {
 gulp.task('watch', function() {
 	// scss and js watchers
 	gulp.watch(pkg.pathToSrc + '**/*.scss', ['styles']);
-	// js hasn't been transfered to gulp yet
-	// gulp.watch(pkg.pathToSrc + '**/*.js', ['scripts']);
+	gulp.watch(pkg.pathToSrc + '**/*.js', ['scripts']);
 	gulp.watch('jsmanifest.json', ['scripts']);
 });
-
-
-//-------------------------------
-// Gulp Watch
-//-------------------------------
-//gulp.task('merge', function() {
-	// TODO:
-	// this task should effectively replace the following tasks:
-	// - `theme watch`
-	// - `git cherry-pick -n 123456`
-	// - `gulp scripts`
-	// - `gulp styles`
-	// - `git commit`
-	// accept commit hash as argument,
-	// (format: `gulp merge --commit [myCommitHashGoesHereNoBrackets]`)
-	// run theme watch to deploy changed files
-	// then cherry-pick commit,
-	// and compile css and js (which will deploy them both)
-	// exec();
-//});
 
 
 //-------------------------------
