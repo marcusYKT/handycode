@@ -1,0 +1,7 @@
+---
+:api_key: 
+:password: 
+:store: 
+:theme_id: 
+:ignore_files:
+- config/settings_data.json
