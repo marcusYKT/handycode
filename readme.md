@@ -1,1 +1,1 @@
-#Useful Shopify Snippets
+#a collection of useful Shopify snippets
